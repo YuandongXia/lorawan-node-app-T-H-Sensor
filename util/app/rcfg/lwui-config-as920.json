@@ -1,0 +1,26 @@
+{
+    // final_period = period ± period_offset
+    // Transmit period, unit: s
+    "period": 30,
+    // Transmit period random offset, unit: s
+    "period_offset": 2,
+
+    "rxwin2":{
+        "freq":923.1,
+        "dr": 3
+    },
+
+    /* Oder of the sections decides, index can't ignored, member by which index is ignored
+        the index will be counted automatically from last index, if first member's index is ignored,
+        it starts from zero  */
+    "channels":[
+        {"index": 0, "freq": 921.5, "dr_min": 0, "dr_max": 5},
+        {"index": 1, "freq": 921.7, "dr_min": 0, "dr_max": 5},
+        {"index": 2, "freq": 921.9, "dr_min": 0, "dr_max": 5},
+        {"index": 3, "freq": 922.1, "dr_min": 0, "dr_max": 5},
+        {"index": 4, "freq": 922.3, "dr_min": 0, "dr_max": 5},
+        {"index": 5, "freq": 922.5, "dr_min": 0, "dr_max": 5},
+        {"index": 6, "freq": 922.7, "dr_min": 0, "dr_max": 5},
+        {"index": 7, "freq": 922.9, "dr_min": 0, "dr_max": 5}
+    ]
+}

@@ -1,0 +1,132 @@
+## VERSION (01)
+
+    TX: 53 01 00 01 F6 C9
+    RX: 53 04 00 01 00 01 00 01 F6 F7
+
+## RESET (02)
+
+    (Unsupport)
+
+## ID (03)
+
+### Check
+
+    TX: 53 01 00 03 B4 E9
+    RX: 53 15 00 03 00 12 C5 99 01 02 00 00 00 00 00 00 86 68 63 65 74 6D 65 73 86 53 0F
+
+    TX: 53 02 00 03 01 FF FF
+    RX: 53 15 00 03 00 12 C5 99 01 02 00 00 00 00 00 00 86 68 63 65 74 6D 65 73 86 53 0F
+
+### SET
+
+    TX: 53 18 00 03 02 12 C5 99 01 03 02 00 00 00 00 00 00 86 04 68 63 65 74 6D 65 73 86 FF FF
+    RX: 53 01 00 03 00 07 D8
+
+
+## ADR (04)
+
+    TX: 53 01 00 04 FF FF
+    RX: 53 02 00 04 00 01 16 36
+
+    TX: 53 02 00 04 00 FF FF
+    TX: 53 02 00 04 01 FF FF
+    RX: 53 02 00 04 00 FF FF
+
+## THRESHOLD (13)
+
+    TX: 53 01 00 13 FF FF
+    RX: 53 02 00 13 00 xx xx 16 36
+
+    TX: 53 02 00 13 xx xx FF FF
+    RX: 53 02 00 13 00 FF FF
+
+## DR (05)
+
+    TX: 53 01 00 05 FF FF
+
+    TX: 53 05 00 05 02 05 03 01 FF FF
+
+## SLEEP (13)
+
+    TX: 53 01 00 13 FF FF
+    // Enter sleep mode
+    RX: 53 03 00 13 00 01 B4 5A
+    // Awake
+    RX: 53 03 00 13 00 00 95 4A
+
+## GPIO (12)
+
+    PIN31                              PIN0
+    0001 0111 0011 0001 1100 1111 1111 1000
+    (0x1731CFF8)
+
+    // Deinit gpio
+    TX: 53 02 00 12 01 FF FF
+
+    // Set gpio all pin output value
+    TX: 53 06 00 12 02 00 00 00 00 FF FF
+
+    // Set gpio output value
+    TX: 53 0A 00 12 03 08 00 00 00 55 55 55 55 FF FF
+
+## RF (11)
+
+    // STOP/SLEEP
+    TX: 53 02 00 11 01 FF FF
+    RX: 53 02 00 11 00 CA 26
+
+    // TXCW
+    TX: 53 02 00 11 02 FF FF
+    RX: 53 02 00 11 00 CA 26
+
+    // TXCLR
+    TX: 53 02 00 11 03 FF FF
+    RX: 53 02 00 11 00 CA 26
+
+    // RFCFG (F:434MHz SF:7 BW:125KHz TXPR:12 RXPR:12 POW:20)
+    TX: 53 0B 00 11 04 80 50 de 19 07 00 0C 0C 14 FF FF
+    TX: 53 0A 00 11 04 C0 5E AD 33 07 00 0C 0D 4B A2
+    RX: 53 02 00 11 00 CA 26
+
+    // TXPKT
+    TX: 53 06 00 11 05 ab cd ef cd FF FF
+    RX: 53 02 00 11 00 CA 26
+
+    // RXPKT
+    TX: 53 02 00 11 06 FF FF
+    RX: 53 02 00 11 00 CA 26
+    RX: Packet will transmit to host when modem receive something
+
+    // RSSI (F:434MHz count: 50)
+    TX: 53 0A 00 11 07 80 50 de 19 32 00 00 00 FF FF
+    RX: 53 0F 00 11 00 07 DC FF DC FF DC FF 0E 01 15 01 0A 01 06 97
+
+    // LWDL
+    Not implemented
+
+    // TEST
+        // Normal
+        TX: 53 03 00 11 09 00 FF FF
+
+        // TX Continuous
+        TX: 53 03 00 11 09 01 FF FF
+
+        // TX LoRa Continuous
+        TX: 53 03 00 11 09 02 FF FF
+
+        // RX LoRa Continuous
+        TX: 53 03 00 11 09 03 FF FF
+
+Note: F(4), SF(1), BW(1), CR(1), POW(1), TXPR(2), RXPR(2)
+
+
+## FDEFAULT (0F)
+
+    TX: 53 09 00 0F 52 69 73 69 6E 67 48 46 FF FF
+    RX: 53 01 00 0F 00 6A 9D
+
+
+test rfcfg
+at+test=sasg,"53 0B 00 11 04 80 50 DE 19 07 00 08 08 0E 11 77"
+
+RX: 53 07 00 11 00 06 96 FF 18 55 98 0A

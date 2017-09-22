@@ -1,0 +1,45 @@
+{
+    // uplink format (DEFAULT/STANDARD/STE)
+    "uplink_format": "STE",
+    "datarate_scheme": "STE920",
+
+    // final_period = period ± period_offset
+    // Transmit period, unit: s
+    "period": 60,
+
+    "rxwin2":{
+        "freq":923.2,
+        "dr": 0
+    },
+    "power": 20,            // dBm
+    "threshold": -80,       // Free channel threshold
+
+    /* Fake GPS coordinate in degree. */
+    "gps":{
+        "longitude": 0.000000,
+        "latitude": 0.000000
+    },
+
+    /* Oder of the sections decides, index can't ignored, member by which index is ignored
+        the index will be counted automatically from last index, if first member's index is ignored,
+        it starts from zero  */
+    "channels":[
+        {"index": 0, "freq": 922.0, "dr_min": 0, "dr_max": 5},
+        {"index": 1, "freq": 922.2, "dr_min": 0, "dr_max": 5},
+        {"index": 2, "freq": 922.4, "dr_min": 0, "dr_max": 5},
+        {"index": 3, "freq": 922.6, "dr_min": 0, "dr_max": 5},
+        {"index": 4, "freq": 922.8, "dr_min": 0, "dr_max": 5},
+        {"index": 5, "freq": 923.0, "dr_min": 0, "dr_max": 5},
+        {"index": 6, "freq": 923.2, "dr_min": 0, "dr_max": 5},
+        {"index": 7, "freq": 923.4, "dr_min": 0, "dr_max": 5}
+    ]
+}
+
+/*
+    Report interval: 200600010200
+
+    Configuration report: 2102
+        8f 0f 02 00 bf c0 f4 c2 33 c4 da c1 00 ff ff
+
+    Alert: (unspported)
+*/

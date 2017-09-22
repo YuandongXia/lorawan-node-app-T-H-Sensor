@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="rcfg" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/rcfg" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="../../lib" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="rcfg" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../../lib" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="../../lib/banner.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../lib/banner.h" />
+		<Unit filename="../../lib/err.h" />
+		<Unit filename="../../lib/log.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../lib/log.h" />
+		<Unit filename="../../lib/parson.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../lib/parson.h" />
+		<Unit filename="../../lib/print.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../lib/print.h" />
+		<Unit filename="../../lib/str2hex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../lib/str2hex.h" />
+		<Unit filename="../../lib/uart.h" />
+		<Unit filename="../../lib/uart.win.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cfg.h" />
+		<Unit filename="cmd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cmd.h" />
+		<Unit filename="gollum.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gollum.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="version.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

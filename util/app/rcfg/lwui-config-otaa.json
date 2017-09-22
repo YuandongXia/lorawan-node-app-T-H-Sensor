@@ -1,0 +1,7 @@
+{
+    // uplink format (DEFAULT/STANDARD/STE)
+    "uplink_format": "DEFAULT",
+
+    // ABP, OTAA, abp, otaa
+    "mode": "OTAA"
+}

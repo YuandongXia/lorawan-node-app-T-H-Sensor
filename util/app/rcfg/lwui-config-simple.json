@@ -1,0 +1,6 @@
+{
+
+    // EU868, US915, RHF01
+    "mode": "OTAA",
+    "period": 20
+}

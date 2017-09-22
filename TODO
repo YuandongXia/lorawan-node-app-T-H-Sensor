@@ -1,0 +1,298 @@
+# TODO List
+
++ LoRaWAN Compliance Test
++ USB modem
+
+## RHF2S001
+
++ Multi bands supports (US915/AU920)
++ DutyCycle limitation
++ 
+
+## Checked
++ LBT
++ Link check
++ Band command
++ Duty cycle limitation
++ class c multicast feature (new DevAddr, NwkSkey, AppSKey, DownlinkCounter)
++ RHF3M077 UART
++ Seperate clock init and Debug function
++ Merge commands (int: port,  power, rept, retry) (bool: adr, dfu) 
++ RXWIN1, print rxwin1 channels and data rate range.
++ PROPRIETARY frame sending/receiving(pmsg, pmsghex)
++ Dutycycle on/off
++ RTC support
+
+# LoRaWAN different between Bands
+
++ Datarate scheme
++ TxPower
++ JoinAccept CFList
++ LinkAdrReq ChMaskCntl
+
+typedef enum{
+	CUSTOM,		// full
+	EU868,		// 863 ~ 870
+	EU433,		// 433 ~ 434
+	US915,		// 902 ~ 928
+	AU920,		// 915 ~ 928
+	CN470,		// 470 ~ 510
+	CN780,		// 779 ~ 787
+}
+
+at+lw=mc,"ON/OFF","DEVADDR","NWKSKEY","APPSKEY","COUNTER"
+at+lw=mc, off, "01234567","00112233445566778899aabbccddeeff","00112233445566778899aabbccddeeff","0"
+at+lw=mc, off, "01234567","00112233445566778899aabbccddeeff","00112233445566778899aabbccddeeff","0"
+
+# LOWPOWER AUTO MODE
+
+at+lowpower             FFFF61742B6C6F77706F7765720A
+at+lowpower=autoon      FFFF61742B6C6F77706F7765723D6175746F6F6E0A
+at+lowpower=autooff     FFFF61742B6C6F77706F7765723D6175746F6F66660A
+
+at+cmsg=aaaa			FFFFFFFF61742B636D73673D6161616107
+
+at+join=force		 	FFFFFFFF61742B6A6F696E3D666F7263650A
+
+## CUSTOM 
+
+
+### Limitation
++ RX1DROFT is not supported, only use defaultuplink/downlink data rate map when RX1DROFT is 0 
++ CFlist doesn't support, If the CFlist is not empty it is ignored by the end-device.
+
+AT+CTAB=DR,dr0~15,sf,bw
+AT+CTAB=PW,dr0~15,dbm
+AT+CTAB=PL,dr0~15,max_pl_size
+
+# Naming
+MIB: MAC information base
+MCPS: MAC Common Part Sublayer
+MLME: MAC layer management entity
+
+Mibt: is responsible to store important runtime information and holds the configuration of the LoRaMAC layer.
+MlmeRequest: manage the LoRaWAN network
+MCPS: data transmissions and data receptions
+
+
+The concept of the API follows the concept of primitives of the IEEE Standard for local and metropolitan area networks — part 15.4: Low-Rate Wireless Personal Area Networks (IEEE802.15.4-2011).
+
+The upcoming figure shows the concept of primitives of the LoRaMAC layer. The concept follows the Request-Confirm and Indication-Response architecture. The LoRaMAC layer offers MCPS (MAC Common Part Sublayer) services, MLME (MAC layer management entity) services and a MIB (MAC information base).
+
+In general, the LoRaMAC layer utilizes MCPS services for data transmissions and data receptions, and MLME services to manage the LoRaWAN network. The MIB is responsible to store important runtime information and holds the configuration of the LoRaMAC layer.
+
+An upper layer (e.g. the main application) is able to perform Requests which the LoRaMAC layer confirms with a Confirm primitive. The LoRaMAC layer notifies an upper layer with the Indication primitive in case of events. The upper layer may responses to an Indication with the Response primitive.
+
+## CMSG
+
+### ACK Received
+	LORAMAC_STATUS_OK
+	McpsConfirm
+	LW_STA_ACK_RECEIVED
+	LORAMAC_EVENT_INFO_STATUS_OK
+	McpsInd
+	LW_STA_ACK_RECEIVED
+	LORAMAC_EVENT_INFO_STATUS_OK
+
+### ACK Not Received
+	LORAMAC_STATUS_OK
+	McpsConfirm
+	LW_STA_DONE
+	LORAMAC_EVENT_INFO_STATUS_RX2_TIMEOUT
+
+## MSG
+	LORAMAC_STATUS_OK
+	McpsConfirm
+	LW_STA_DONE
+	LORAMAC_EVENT_INFO_STATUS_OK
+
+## AU920
+
+### 125KHz Uplink 200KHz space
+	915.2 ~ 927.8
+
+### 500KHz Uplink (1.6MHz space)
+	915.9 ~ 927.1
+
+### 500KHz downlink (600KHz)
+	923.3 ~ 927.5
+
++DR: AU920
++CH: 72; 0,915200000,DR0,DR3; 1,915400000,DR0,DR3; 2,915600000,DR0,DR3; 3,915800000,DR0,DR3; 4,916000000,DR0,DR3; 5,916200000,DR0,DR3; 6,916400000,DR0,DR3; 7,916600000,DR0,DR3; 
++CH: 8,916800000,DR0,DR3; 9,917000000,DR0,DR3; 10,917200000,DR0,DR3; 11,917400000,DR0,DR3; 12,917600000,DR0,DR3; 13,917800000,DR0,DR3; 14,918000000,DR0,DR3; 15,918200000,DR0,DR3; 
++CH: 16,918400000,DR0,DR3; 17,918600000,DR0,DR3; 18,918800000,DR0,DR3; 19,919000000,DR0,DR3; 20,919200000,DR0,DR3; 21,919400000,DR0,DR3; 22,919600000,DR0,DR3; 23,919800000,DR0,DR3; 
++CH: 24,920000000,DR0,DR3; 25,920200000,DR0,DR3; 26,920400000,DR0,DR3; 27,920600000,DR0,DR3; 28,920800000,DR0,DR3; 29,921000000,DR0,DR3; 30,921200000,DR0,DR3; 31,921400000,DR0,DR3; 
++CH: 32,921600000,DR0,DR3; 33,921800000,DR0,DR3; 34,922000000,DR0,DR3; 35,922200000,DR0,DR3; 36,922400000,DR0,DR3; 37,922600000,DR0,DR3; 38,922800000,DR0,DR3; 39,923000000,DR0,DR3; 
++CH: 40,923200000,DR0,DR3; 41,923400000,DR0,DR3; 42,923600000,DR0,DR3; 43,923800000,DR0,DR3; 44,924000000,DR0,DR3; 45,924200000,DR0,DR3; 46,924400000,DR0,DR3; 47,924600000,DR0,DR3; 
++CH: 48,924800000,DR0,DR3; 49,925000000,DR0,DR3; 50,925200000,DR0,DR3; 51,925400000,DR0,DR3; 52,925600000,DR0,DR3; 53,925800000,DR0,DR3; 54,926000000,DR0,DR3; 55,926200000,DR0,DR3; 
++CH: 56,926400000,DR0,DR3; 57,926600000,DR0,DR3; 58,926800000,DR0,DR3; 59,927000000,DR0,DR3; 60,927200000,DR0,DR3; 61,927400000,DR0,DR3; 62,927600000,DR0,DR3; 63,927800000,DR0,DR3; 
++CH: 64,915900000,DR4; 65,917500000,DR4; 66,919100000,DR4; 67,920700000,DR4; 68,922300000,DR4; 69,923900000,DR4; 70,925500000,DR4; 71,927100000,DR4; 
+
+# Customized datarate
+
+## EU868
+	AT+DR=CUSTOM
+	AT+DR=CUSTOM,DR0,SF12,125
+	AT+DR=CUSTOM,DR1,SF11,125
+	AT+DR=CUSTOM,DR2,SF10,125
+	AT+DR=CUSTOM,DR3,SF9,125
+	AT+DR=CUSTOM,DR4,SF8,125
+	AT+DR=CUSTOM,DR5,SF7,125
+	AT+DR=CUSTOM,DR6,SF7,250
+	AT+DR=CUSTOM,DR7,FSK
+	AT+DR=CUSTOM,DR8,RFU
+	AT+DR=CUSTOM,DR9,RFU
+	AT+DR=CUSTOM,DR10,RFU
+	AT+DR=CUSTOM,DR11,RFU
+	AT+DR=CUSTOM,DR12,RFU
+	AT+DR=CUSTOM,DR13,RFU
+	AT+DR=CUSTOM,DR14,RFU
+	AT+DR=CUSTOM,DR15,RFU
+	AT+LW=CDR,0,7,0,7			//TX_DR_MIN 0, TX_DR_MIN 7, RX_DR_MIN 0, RX_DR_MIN 7
+	AT+DR=DR0
+	AT+DR=SCHEME
+
+## US915/AU920
+	AT+DR=CUSTOM
+	AT+DR=CUSTOM,DR0,SF10,125,DR10
+	AT+DR=CUSTOM,DR1,SF9,125,DR11
+	AT+DR=CUSTOM,DR2,SF8,125,DR12
+	AT+DR=CUSTOM,DR3,SF7,125,DR13
+	AT+DR=CUSTOM,DR4,SF7,500,DR13
+	AT+DR=CUSTOM,DR5,RFU
+	AT+DR=CUSTOM,DR6,RFU
+	AT+DR=CUSTOM,DR7,RFU
+	AT+DR=CUSTOM,DR8,SF12,500
+	AT+DR=CUSTOM,DR9,SF11,500
+	AT+DR=CUSTOM,DR10,SF10,500
+	AT+DR=CUSTOM,DR11,SF9,500
+	AT+DR=CUSTOM,DR12,SF8,500
+	AT+DR=CUSTOM,DR13,SF7,500
+	AT+DR=CUSTOM,DR14,RFU
+	AT+DR=CUSTOM,DR15,RFU
+	AT+LW=CDR,0,4,8,13			//UL_TX_DR_MIN 0, UL_TX_DR_MIN 4, DL_RX_DR_MIN 8, DL_RX_DR_MIN 13
+	AT+DR=DR0
+	AT+DR=SCHEME
+		+DR: CUSTOM
+		+DR: CUSTOM DR0  SF10 BW125K DLDR10
+		+DR: CUSTOM DR1  SF9  BW125K DLDR11
+		+DR: CUSTOM DR2  SF8  BW125K DLDR12
+		+DR: CUSTOM DR3  SF7  BW125K DLDR13
+		+DR: CUSTOM DR4  SF7  BW500K DLDR13
+		+DR: CUSTOM DR5  RFU
+		+DR: CUSTOM DR6  RFU
+		+DR: CUSTOM DR7  RFU
+		+DR: CUSTOM DR8  SF12 BW500K 
+		+DR: CUSTOM DR9  SF11 BW500K 
+		+DR: CUSTOM DR10 SF10 BW500K 
+		+DR: CUSTOM DR11 SF9  BW500K 
+		+DR: CUSTOM DR12 SF8  BW500K 
+		+DR: CUSTOM DR13 SF7  BW500K 
+		+DR: CUSTOM DR14 RFU
+		+DR: CUSTOM DR15 RFU
+
+### Define new channels
+	AT+CH=0,902.3,0,3
+	AT+CH=1,902.5,0,3
+	AT+CH=2,902.7,0,3
+	AT+CH=3,902.9,0,3
+	AT+CH=4,903.1,0,3
+	AT+CH=5,903.3,0,3
+	AT+CH=6,903.5,0,3
+	AT+CH=7,903.7,0,3
+	AT+CH=8,903.0,4
+
+	at+rxwin1=0,923.3
+	at+rxwin1=1,923.9
+	at+rxwin1=2,924.5
+	at+rxwin1=3,925.1
+	at+rxwin1=4,925.7
+	at+rxwin1=5,926.3
+	at+rxwin1=6,926.9
+	at+rxwin1=7,927.5
+	at+rxwin1=8,923.3
+
+# Changelog
+	+ Support sending LoRaWAN proprietary frame (PMSG, PMSGHEX)
+	+ RETRY command to set confirmed message retry times
+	+ RXWIN1 is updated
+	+ JOIN command is simplified
+	+ Multi cast feature
+	+ LBT threshold configuration
+	+ LOWPOWER command alarm feature
+	+ RTC yyyy-MM-dd HH:mm:ss
+	+ VDD command to read supply voltage
+	+ REG command to control SX1276 RF chip
+	+ Support new bands US915/AU920/US915HYBRID/EU433
+
+# Low level api improvement
+	+ UART is now using DMA to unload MCU, improve UART stability
+	+ Optimize RTC driver
+	+ LoRaWAN driver  LoRaMac-Node develop branch fd8b67a41243299d1f4d85b7991f1789366af6a9 (>4.2)
+
+# v2.0.2
++ Add debug pin
++ Payload length limitation is aligned to band
++ Decrease RX Timeout symbol length
++ Support Maximum 72 channels
++ Rename EU433 to EU434
++ Data rate protection
++ Fix tx timeout setting
++ LoRaMacBandTimeToValid and AggregatedDCycle is accessible from other files
+
+//+MSG: Start
+//+MSG: TX "Hello LoRaWAN"
+//+MSG: PORT: 1; RX: "11 22 33 44 55 66"
+//+MSG: MACCMD: "03 51 07 00 61 01"
+//+MSG: RXWIN1, RSSI -70, SNR 10.5
+//+MSG: Done
+
+//+MSG: Start
+//+MSG: TX "Hello LoRaWAN"
+//+MSG: PORT: 1; RX: "11 22 33 44 55 66"
+//+MSG: RXWIN1, RSSI -69, SNR 6.75
+//+MSG: Done
+
+//+MSG: Start
+//+MSG: TX "Hello LoRaWAN"
+//+MSG: PORT: 1; RX: "11 22 33 44 55 66"
+//+MSG: RXWIN1, RSSI -66, SNR 7.25
+//+MSG: Done
+
+//+MSG: Start
+//+MSG: TX "Hello LoRaWAN"
+//+MSG: PORT: 1; RX: "11 22 33 44 55 66"
+//+MSG: MACCMD: "03 51 07 00 61 01"
+//+MSG: RXWIN1, RSSI -70, SNR 10.5
+//+MSG: Done
+
+//+CMSG: Start
+//+CMSG: TX "Hello LoRaWAN"
+//+CMSG: ACK Received
+//+CMSG: RXWIN1, RSSI -71, SNR 9.75
+//+CMSG: Done
+
+//+CMSG: Start
+//+CMSG: TX "Hello LoRaWAN"
+//+CMSG: Wait ACK
+//+CMSG: ACK Received
+//+CMSG: PORT: 1; RX: "11 22 33 44 55 66"
+//+CMSG: RXWIN1, RSSI -70, SNR 10
+//+CMSG: Done
+
+//+CMSG: Start
+//+CMSG: TX "Hello LoRaWAN"
+//+CMSG: Wait ACK
+//+CMSG: ACK Received
+//+CMSG: MACCMD: "03 51 07 00 61"
+//+CMSG: RXWIN1, RSSI -72, SNR 7.5
+//+CMSG: Done
+
+//+CMSG: Start
+//+CMSG: TX "Hello LoRaWAN"
+//+CMSG: Wait ACK
+//+CMSG: ACK Received
+//+CMSG: PORT: 1; RX: "11 22 33 44 55 66"
+//+CMSG: MACCMD: "03 51 07 00 61 01"
+//+CMSG: RXWIN1, RSSI -68, SNR 7
+//+CMSG: Done

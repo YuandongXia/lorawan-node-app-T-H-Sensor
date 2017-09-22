@@ -1,0 +1,94 @@
+{
+    // uplink format (DEFAULT/STANDARD/STE)
+    "uplink_format": "DEFAULT",
+
+    // ABP, OTAA, abp, otaa
+    "mode": "ABP",
+
+    // final_period = period ± period_offset
+    // Transmit period, unit: s
+    "period": 90,
+    // Transmit period random offset, unit: s
+    "period_offset": 2,
+
+    // EU868
+    "datarate_scheme": "EU868",
+
+    // "id":{
+    //     "devaddr":"00 00 00 0F",
+    //     "deveui":"0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02",
+    //     "appeui":"0x86, 0x73, 0x65, 0x6D, 0x74, 0x65, 0x63, 0x68"
+    // },
+
+    // /* nwkskey, appskey, appkey */
+    // "key":{
+    //     "nwkskey":"2B 7E 15 16 28 AE D2 A6 AB F7 15 88 09 CF 4F 3c",
+    //     "appskey":"2B7E151628AED2A6ABF7158809CF4F3C",
+    //     "appkey":"0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+    // },
+
+    "rxwin2":{
+        "freq": 869.525000,
+        "dr": 3
+    },
+
+    "multicast":{
+        "enable": false,
+        "devaddr": "00 00 00 0F",
+        "nwkskey": "2B7E151628AED2A6ABF7158809CF4F3C",
+        "appskey": "2B7E151628AED2A6ABF7158809CF4F3C",
+        "counter": 0
+    },
+
+    // adaptive datarate option, true: enable, false: disable
+    "adr":true,
+
+
+    "dr": 0,                // default datarate DR0~DR15
+    "power": 20,            // dBm
+    "rept": 1,              // unconfirmed message repetition
+    "retry": 3,             // confirmed message retry
+    "port": 8,              // retry
+    "class": "C",           // Class A, C. B is not supported.
+    "threshold": -80,       // Free channel threshold
+
+    /* Oder of the sections decides, index can't ignored, member by which index is ignored
+        the index will be counted automatically from last index, if first member's index is ignored,
+        it starts from zero  */
+    "channels":[
+        {
+            "index": 0,
+            "freq": 868.1,
+            "dr_min": 0,
+            "dr_max": 5
+        },
+        {
+            "index": 1,
+            "freq": 868.3,
+            "dr_min": 0,
+            "dr_max": 5
+        },
+        {
+            "index": 2,
+            "freq": 868.5,
+            "dr_min": 0,
+            "dr_max": 5
+        }
+    ],
+
+    /* set freq 0, the device will use LoRaWAN default RXWIN1 channel */
+    "rxwin1":[
+        {
+            "index": 0,
+            "freq": 868.1
+        },
+        {
+            "index": 2,
+            "freq": 868.3
+        },
+        {
+            "index": 2,
+            "freq": 868.5
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+
+    "rxwin2":{
+        "freq":923.3,
+        "dr": 8
+    },
+    "power": 14,            // dBm
+    "threshold": -60
+}
+
+/*
+    Report interval: 200600010200
+
+    Configuration report: 2102
+        8f 0f 02 00 bf c0 f4 c2 33 c4 da c1 00 ff ff
+
+    Alert: (unspported)
+*/

@@ -1,0 +1,164 @@
+{
+    // uplink format (DEFAULT/STANDARD)
+    "uplink_format": "DEFAULT",
+
+    // ABP, OTAA
+    "mode": "ABP",
+
+    // final_period = period ± period_offset
+    // Transmit period, unit: s
+    "period": 5,
+    // Transmit period random offset, unit: s
+    "period_offset": 1,
+
+    // AU920
+    "datarate_scheme": "AU920",
+
+    // "id":{
+    //     "devaddr":"00 00 00 0F",
+    //     "deveui":"0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02",
+    //     "appeui":"0x86, 0x73, 0x65, 0x6D, 0x74, 0x65, 0x63, 0x68"
+    // },
+
+    // /* nwkskey, appskey, appkey */
+    // "key":{
+    //     "nwkskey":"2B 7E 15 16 28 AE D2 A6 AB F7 15 88 09 CF 4F 3c",
+    //     "appskey":"2B7E151628AED2A6ABF7158809CF4F3C",
+    //     "appkey":"0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+    // },
+
+    "rxwin2":{
+        "freq":923.3,
+        "dr": 8
+    },
+
+    // adaptive datarate option, true: enable, false: disable
+    "adr":true,
+
+
+    "dr": 0,                // default datarate DR0~DR15
+    "power": 14,            // dBm
+    "rept": 1,              // unconfirmed message repetition
+    "retry": 3,             // confirmed message retry
+    "port": 8,              // retry
+    "class": "A",           // Class A, C. B is not supported.
+    "threshold": -90,       // Free channel threshold
+
+    /* Oder of the sections decides, index can't ignored, member by which index is ignored
+        the index will be counted automatically from last index, if first member's index is ignored,
+        it starts from zero  */
+    "channels":[
+        { "index": 0, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 1, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 2, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 3, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 4, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 5, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 6, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 7, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 8, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 9, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 10, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 11, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 12, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 13, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 14, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 15, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 16, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 17, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 18, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 19, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 20, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 21, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 22, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 23, "freq": 0, "dr_min": 0, "dr_max": 3 },
+		{
+            "index": 24,
+            "freq": 920.0,
+            "dr_min": 0,
+            "dr_max": 3
+        },
+        {
+            "index": 25,
+            "freq": 920.2,
+            "dr_min": 0,
+            "dr_max": 3
+        },
+        {
+            "index": 26,
+            "freq": 920.4,
+            "dr_min": 0,
+            "dr_max": 3
+        },
+        {
+            "index": 27,
+            "freq": 920.6,
+            "dr_min": 0,
+            "dr_max": 3
+        },
+        {
+            "index": 28,
+            "freq": 920.8,
+            "dr_min": 0,
+            "dr_max": 3
+        },
+        {
+            "index": 29,
+            "freq": 921.0,
+            "dr_min": 0,
+            "dr_max": 3
+        },
+        {
+            "index": 30,
+            "freq": 921.2,
+            "dr_min": 0,
+            "dr_max": 3
+        },
+        {
+            "index": 31,
+            "freq": 921.4,
+            "dr_min": 0,
+            "dr_max": 3
+        },
+        { "index": 32, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 33, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 34, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 35, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 36, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 37, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 38, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 39, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 40, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 41, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 42, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 43, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 44, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 45, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 46, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 47, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 48, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 49, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 50, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 51, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 52, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 53, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 54, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 55, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 56, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 57, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 58, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 59, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 60, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 61, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 62, "freq": 0, "dr_min": 0, "dr_max": 3 },
+        { "index": 63, "freq": 0, "dr_min": 4, "dr_max": 4 },
+        { "index": 64, "freq": 0, "dr_min": 4, "dr_max": 4 },
+        { "index": 65, "freq": 0, "dr_min": 4, "dr_max": 4 },
+        { "index": 66, "freq": 0, "dr_min": 4, "dr_max": 4 },
+        { "index": 67, "freq": 0, "dr_min": 4, "dr_max": 4 },
+        { "index": 68, "freq": 0, "dr_min": 4, "dr_max": 4 },
+        { "index": 69, "freq": 0, "dr_min": 4, "dr_max": 4 },
+        { "index": 70, "freq": 0, "dr_min": 4, "dr_max": 4 },
+        { "index": 71, "freq": 0, "dr_min": 4, "dr_max": 4 }
+    ]
+}
